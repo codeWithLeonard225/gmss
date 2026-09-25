@@ -22,6 +22,26 @@ const TeacherPayrollReport = () => {
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
   });
 
+  // Helper to format time display across all potential formats
+  const formatTimeDisplay = (record) => {
+    if (record.clockInTime && record.clockOutTime) {
+      return `${record.clockInTime} - ${record.clockOutTime}`;
+    }
+    if (record.clockInTime) {
+      return record.clockInTime;
+    }
+    if (record.time?.toDate) {
+      return record.time.toDate().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    }
+    if (record.time && typeof record.time === "string") {
+      return record.time;
+    }
+    return "---";
+  };
+
   // ---------------- 1. FETCH TEACHER PROFILE & ATTENDANCE ----------------
   useEffect(() => {
     const fetchData = async () => {
@@ -109,7 +129,61 @@ const TeacherPayrollReport = () => {
     };
   }, [attendanceHistory, teacherProfile, selectedMonth]);
 
-  // ---------------- 3. FORMAT CURRENCY ----------------
+  // ---------------- 3. CALENDAR GENERATION LOGIC ----------------
+  const calendarInfo = useMemo(() => {
+    if (!selectedMonth) return { days: [], firstDayOffset: 0 };
+    const [year, month] = selectedMonth.split("-").map(Number);
+
+    const daysInMonth = new Date(year, month, 0).getDate();
+    const firstDayOffset = new Date(year, month - 1, 1).getDay();
+
+    return {
+      days: Array.from({ length: daysInMonth }, (_, index) => index + 1),
+      firstDayOffset,
+    };
+  }, [selectedMonth]);
+
+  // Quick lookup map for calendar date statuses
+  const calendarMap = useMemo(() => {
+    const map = {};
+    monthlyData.records.forEach((record) => {
+      if (record.date) {
+        map[record.date] = record.status?.trim().toLowerCase();
+      }
+    });
+    return map;
+  }, [monthlyData.records]);
+
+  // Format month string into readable header
+  const formattedMonthName = useMemo(() => {
+    if (!selectedMonth) return "";
+    const [year, month] = selectedMonth.split("-").map(Number);
+    return new Date(year, month - 1, 1).toLocaleDateString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+  }, [selectedMonth]);
+
+  // Helper for calendar cell status styling
+  const getCalendarStatusStyle = (status) => {
+    switch (status) {
+      case "present":
+        return "bg-emerald-100 text-emerald-800 border-emerald-200 font-extrabold";
+      case "late":
+        return "bg-amber-100 text-amber-800 border-amber-200 font-extrabold";
+      case "absent":
+        return "bg-rose-100 text-rose-800 border-rose-200 font-extrabold";
+      case "on leave":
+      case "leave":
+        return "bg-purple-100 text-purple-800 border-purple-200 font-extrabold";
+      case "excused":
+        return "bg-blue-100 text-blue-800 border-blue-200 font-extrabold";
+      default:
+        return "bg-gray-50/60 text-gray-400 border-gray-100";
+    }
+  };
+
+  // ---------------- 4. FORMAT CURRENCY ----------------
   const formatMoney = (amount) => {
     return new Intl.NumberFormat("en-SL", {
       style: "currency",
@@ -118,7 +192,7 @@ const TeacherPayrollReport = () => {
     }).format(amount || 0);
   };
 
-  // ---------------- 4. EXPORT PDF PAYSLIP ----------------
+  // ---------------- 5. EXPORT PDF PAYSLIP ----------------
   const exportPDF = () => {
     const doc = new jsPDF();
 
@@ -136,8 +210,14 @@ const TeacherPayrollReport = () => {
       head: [["Description", "Amount / Count"]],
       body: [
         ["Base Salary", formatMoney(monthlyData.salary)],
-        [`Late Days (${monthlyData.lateDays} d @ ${formatMoney(monthlyData.lateCostPerDay)}/d)`, `-${formatMoney(monthlyData.lateDeduction)}`],
-        [`Absent Days (${monthlyData.absentDays} d @ ${formatMoney(monthlyData.absentCostPerDay)}/d)`, `-${formatMoney(monthlyData.absentDeduction)}`],
+        [
+          `Late Days (${monthlyData.lateDays} d @ ${formatMoney(monthlyData.lateCostPerDay)}/d)`,
+          `-${formatMoney(monthlyData.lateDeduction)}`,
+        ],
+        [
+          `Absent Days (${monthlyData.absentDays} d @ ${formatMoney(monthlyData.absentCostPerDay)}/d)`,
+          `-${formatMoney(monthlyData.absentDeduction)}`,
+        ],
         ["Total Deductions", `-${formatMoney(monthlyData.totalDeduction)}`],
         ["Net Salary Payable", formatMoney(monthlyData.netSalary)],
       ],
@@ -148,11 +228,11 @@ const TeacherPayrollReport = () => {
     // Detailed Log
     autoTable(doc, {
       startY: doc.lastAutoTable.finalY + 10,
-      head: [["Date", "Status", "Time"]],
+      head: [["Date", "Status", "Clock In / Out Time"]],
       body: monthlyData.records.map((r) => [
         r.date,
-        r.status,
-        r.time?.toDate ? r.time.toDate().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "N/A",
+        r.status || "N/A",
+        formatTimeDisplay(r),
       ]),
       styles: { fontSize: 9 },
     });
@@ -173,7 +253,6 @@ const TeacherPayrollReport = () => {
   return (
     <div className="p-4 sm:p-6 bg-gray-50 min-h-screen font-sans">
       <div className="max-w-5xl mx-auto flex flex-col gap-6">
-
         {/* HEADER */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
@@ -212,94 +291,168 @@ const TeacherPayrollReport = () => {
 
         {/* FINANCIAL OVERVIEW STATS */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm text-center">
-            <p className="text-[10px] font-black text-gray-400 uppercase">Gross Salary</p>
+          <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+            <p className="text-xs font-bold text-gray-400 uppercase">
+              Base Salary
+            </p>
             <p className="text-xl font-black text-gray-800 mt-1">
               {formatMoney(monthlyData.salary)}
             </p>
           </div>
-          <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm text-center">
-            <p className="text-[10px] font-black text-gray-400 uppercase">Total Deductions</p>
+          <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+            <p className="text-xs font-bold text-red-400 uppercase">
+              Total Deductions
+            </p>
             <p className="text-xl font-black text-red-600 mt-1">
               -{formatMoney(monthlyData.totalDeduction)}
             </p>
           </div>
-          <div className="bg-white p-5 rounded-3xl border border-indigo-100 shadow-sm text-center bg-indigo-50/50">
-            <p className="text-[10px] font-black text-indigo-500 uppercase">Net Payable</p>
-            <p className="text-xl font-black text-indigo-700 mt-1">
+          <div className="bg-emerald-600 p-5 rounded-2xl text-white shadow-sm">
+            <p className="text-xs font-bold text-emerald-200 uppercase">
+              Net Payable Salary
+            </p>
+            <p className="text-xl font-black mt-1">
               {formatMoney(monthlyData.netSalary)}
             </p>
           </div>
         </div>
 
-        {/* ATTENDANCE COUNTS & DEDUCTIONS BREAKDOWN */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <p className="text-[9px] font-black text-green-500 uppercase">Present Days</p>
-            <p className="text-lg font-black text-gray-800">{monthlyData.presentDays}</p>
-          </div>
-          <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <p className="text-[9px] font-black text-amber-500 uppercase">Late Days ({formatMoney(monthlyData.lateCostPerDay)}/d)</p>
-            <p className="text-lg font-black text-amber-600">{monthlyData.lateDays}</p>
-            <p className="text-[10px] text-gray-400">-{formatMoney(monthlyData.lateDeduction)}</p>
-          </div>
-          <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm text-center">
-            <p className="text-[9px] font-black text-red-500 uppercase">Absent Days ({formatMoney(monthlyData.absentCostPerDay)}/d)</p>
-            <p className="text-lg font-black text-red-600">{monthlyData.absentDays}</p>
-            <p className="text-[10px] text-gray-400">-{formatMoney(monthlyData.absentDeduction)}</p>
-          </div>
-        </div>
+        {/* MONTHLY ATTENDANCE CALENDAR GRID */}
+        <div className="bg-white p-5 sm:p-6 rounded-3xl border border-gray-100 shadow-sm">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-5">
+            <div>
+              <h2 className="text-sm sm:text-base font-black text-gray-800 uppercase tracking-wide">
+                Attendance Calendar
+              </h2>
+              <p className="text-xs font-bold text-indigo-600 mt-0.5">
+                {formattedMonthName}
+              </p>
+            </div>
 
-        {/* DETAILED ATTENDANCE LOG */}
-        <div className="space-y-3">
-          <h3 className="font-black text-gray-700 uppercase text-xs tracking-wider">
-            Monthly Attendance Records
-          </h3>
-          {monthlyData.records.length > 0 ? (
-            monthlyData.records.map((record) => {
-              const isPresent = record.status?.toLowerCase() === "present";
-              const isLate = record.status?.toLowerCase() === "late";
+            {/* STATUS LEGEND */}
+            <div className="flex flex-wrap items-center gap-3 text-[10px] font-extrabold uppercase">
+              <div className="flex items-center gap-1">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <span className="text-gray-500">Present</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                <span className="text-gray-500">Late</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                <span className="text-gray-500">Absent</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CALENDAR DAYS OF WEEK HEADER */}
+          <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-2 text-center">
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+              <div
+                key={day}
+                className="text-[9px] sm:text-xs font-black uppercase text-gray-400 py-1"
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+
+          {/* CALENDAR GRID CELLS */}
+          <div className="grid grid-cols-7 gap-1 sm:gap-2">
+            {/* Empty padding cells for start-of-month offset */}
+            {Array.from({ length: calendarInfo.firstDayOffset }).map(
+              (_, index) => (
+                <div
+                  key={`offset-${index}`}
+                  className="h-12 sm:h-16 rounded-2xl bg-gray-50/40 border border-transparent"
+                />
+              )
+            )}
+
+            {/* Active Month Days */}
+            {calendarInfo.days.map((day) => {
+              const formattedDay = String(day).padStart(2, "0");
+              const dateStr = `${selectedMonth}-${formattedDay}`;
+              const status = calendarMap[dateStr];
+              const statusStyle = getCalendarStatusStyle(status);
 
               return (
                 <div
-                  key={record.id}
-                  className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between"
+                  key={day}
+                  className={`h-12 sm:h-16 p-1.5 sm:p-2 rounded-2xl border flex flex-col justify-between transition-all ${statusStyle}`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="bg-gray-100 h-10 w-10 rounded-xl flex flex-col items-center justify-center text-gray-500">
-                      <span className="text-[7px] font-black uppercase">Date</span>
-                      <span className="text-xs font-bold">{record.date.split("-")[2]}</span>
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-black text-gray-400 uppercase">{record.date}</p>
-                      <h4 className="text-xs font-bold text-gray-800">
-                        Recorded at: {record.time?.toDate ? record.time.toDate().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "N/A"}
-                      </h4>
-                    </div>
-                  </div>
-                  <span
-                    className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${
-                      isPresent
-                        ? "bg-green-100 text-green-700 border-green-200"
-                        : isLate
-                        ? "bg-amber-100 text-amber-700 border-amber-200"
-                        : "bg-red-100 text-red-700 border-red-200"
-                    }`}
-                  >
-                    {record.status}
+                  <span className="text-[10px] sm:text-xs font-black">
+                    {day}
                   </span>
+                  {status && (
+                    <span className="text-[7px] sm:text-[9px] uppercase tracking-tighter truncate font-extrabold">
+                      {status}
+                    </span>
+                  )}
                 </div>
               );
-            })
-          ) : (
-            <div className="bg-white p-8 rounded-3xl border border-dashed border-gray-200 text-center">
-              <p className="text-gray-400 font-bold uppercase text-sm">
-                No attendance records for this month, kindly contact the school admin.
-              </p>
-            </div>
-          )}
+            })}
+          </div>
         </div>
 
+        {/* DETAILED ATTENDANCE TABLE */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+          <div className="p-4 bg-gray-50/50 border-b border-gray-100">
+            <h2 className="text-sm font-bold text-gray-700 uppercase tracking-wide">
+              Attendance Records Log
+            </h2>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr className="bg-gray-50 border-b border-gray-100 text-gray-400 uppercase font-extrabold">
+                  <th className="p-3">Date</th>
+                  <th className="p-3">Status</th>
+                  <th className="p-3">Clock In</th>
+                  <th className="p-3">Clock Out</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 text-gray-700 font-medium">
+                {monthlyData.records.length > 0 ? (
+                  monthlyData.records.map((r) => (
+                    <tr key={r.id} className="hover:bg-gray-50/50 transition">
+                      <td className="p-3 font-semibold">{r.date}</td>
+                      <td className="p-3">
+                        <span
+                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
+                            r.status?.toLowerCase() === "present"
+                              ? "bg-emerald-50 text-emerald-600"
+                              : r.status?.toLowerCase() === "late"
+                              ? "bg-amber-50 text-amber-600"
+                              : "bg-red-50 text-red-600"
+                          }`}
+                        >
+                          {r.status || "N/A"}
+                        </span>
+                      </td>
+                      <td className="p-3 font-semibold text-emerald-700">
+                        {r.clockInTime || "---"}
+                      </td>
+                      <td className="p-3 font-semibold text-rose-700">
+                        {r.clockOutTime || "Not Clocked Out"}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      colSpan="4"
+                      className="p-6 text-center text-gray-400 italic"
+                    >
+                      No attendance records found for this month.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );
