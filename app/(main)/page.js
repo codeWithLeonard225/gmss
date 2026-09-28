@@ -20,7 +20,7 @@ export default function HomePage() {
 
         {/* Background Image */}
         <Image
-          src="/images/model-school-bg.png"
+          src="/images/model-schoolhero.jpg"
           alt="Government Model Senior Secondary School"
           fill
           priority
@@ -29,8 +29,8 @@ export default function HomePage() {
         />
 
         {/* Dark Maroon Overlays */}
-        <div className="absolute inset-0 bg-[#800000]/85"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4a0000] via-[#800000]/90 to-transparent"></div>
+        {/* <div className="absolute inset-0 bg-[#800000]/85"></div> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-[#4a0000] via-[#800000]/90 to-transparent"></div> */}
 
         {/* Hero Content */}
         <div className="relative z-10 w-full px-6 py-20">
@@ -41,7 +41,7 @@ export default function HomePage() {
               {/* Logo / Crest */}
               <div className="mb-8">
                 <Image
-                  src="/icons/model-school-logo.png"
+                  src="/icons/model-school-bg.png"
                   alt="Government Model Senior Secondary School Logo"
                   width={120}
                   height={120}
@@ -49,21 +49,15 @@ export default function HomePage() {
                 />
               </div>
 
-              {/* Small Heading */}
-              <p className="uppercase tracking-[0.3em] text-[#F3E5AB] font-bold text-sm mb-4">
+            
+              {/* Main Heading */}
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-28">
+                
+              </h1>
+
+                <p className=" uppercase  text-[#F3E5AB] font-bold  text-4xl md:text-6xl lg:text-7xl  mb-6">
                 Government Model Senior Secondary School
               </p>
-
-              {/* Main Heading */}
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
-                Excellence.
-                <br />
-                Discipline.
-                <br />
-                <span className="text-[#F3E5AB]">
-                  Service.
-                </span>
-              </h1>
 
               <p className="text-lg md:text-xl text-amber-50 leading-relaxed max-w-2xl mb-8">
                 Empowering students through academic rigor, strong character, 
@@ -72,20 +66,6 @@ export default function HomePage() {
 
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-
-                <Link
-                  href="/admissions"
-                  className="inline-flex justify-center items-center bg-[#D4AF37] hover:bg-[#c59b27] text-[#4a0000] font-bold px-8 py-4 rounded-lg shadow-xl transition duration-300"
-                >
-                  Apply for Admission
-                </Link>
-
-                <Link
-                  href="/about"
-                  className="inline-flex justify-center items-center border-2 border-white hover:bg-white hover:text-[#800000] text-white font-semibold px-8 py-4 rounded-lg transition duration-300"
-                >
-                  Discover Our School
-                </Link>
 
               </div>
 

@@ -77,8 +77,11 @@ export default function MainFooter() {
 
             {/* Motto */}
             <div className="mt-5 border-l-4 border-[#D4AF37] pl-4">
-              <p className="text-[#D4AF37] font-bold text-sm">
-                Integrity + Excellence = Leadership
+              <p className="text-[#D4AF37] font-bold text-sm italic">
+                Disce Prodesse
+              </p>
+              <p className="text-amber-100/70 text-xs mt-0.5">
+                Learn to Be Useful
               </p>
             </div>
 

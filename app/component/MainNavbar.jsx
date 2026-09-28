@@ -74,32 +74,32 @@ export default function MainNavbar() {
           </Link>
 
           <Link
-            href="/"
-            // href="/about"
+        
+            href="/about"
             className="hover:text-[#800000] transition duration-200"
           >
             About Us
           </Link>
 
           <Link
-            // href="/service"
-            href="/"
+            href="/service"
+         
             className="hover:text-[#800000] transition duration-200"
           >
             Services
           </Link>
 
           <Link
-            // href="/gallery"
-            href="/"
+            href="/gallery"
+         
             className="hover:text-[#800000] transition duration-200"
           >
             Gallery
           </Link>
 
           <Link
-            // href="/contact"
             href="/contact"
+         
             className="hover:text-[#800000] transition duration-200"
           >
             Contact

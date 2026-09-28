@@ -35,6 +35,8 @@ import GradeEntry from "../../TeacherAssign/GradeEntry";
 import SubjectGradeDeleteEntry from "../../TeacherAssign/SubjectGradeDeleteEntry";
 import PupilAttendanceScanner from "../../TeacherAssign/PupilAttendanceScanner";
 import PupilsAttendance from "../../TeacherAssign/PupilsAttendance";
+import ManualAttendance from "../../TeacherAssign/ManualAttendance";
+import ClassList from "../../TeacherAssign/ClassList";
 
 const NAV_ITEMS = [
   { key: "dashboard", label: "Dashboard", icon: <MdDashboard /> },
@@ -57,7 +59,7 @@ const NAV_ITEMS = [
     icon: <MdBarChart />,
     requiresFormTeacher: true,
     children: [
-      // { key: "SubmittedGrades", label: "Submitted grades" },
+      { key: "ClassList", label: "Class List" },
       { key: "GradeSheet", label: "Grade Sheet" },
         // { key: "GradeEntry", label: "Grade Manuel" },
       // { key: "SubjectGradeDeleteEntry", label: "Subject Delete" },
@@ -66,15 +68,16 @@ const NAV_ITEMS = [
       { key: "TermResult", label: "Term Result" },
       // { key: "YearlyResult", label: "Yearly Result" },
       { key: "PupilAttendanceScanner", label: "Scan Attendance " },
+      { key: "ManualAttendance", label: "Manual Attendance " },
       { key: "PupilsAttendance", label: "Pupil Attendance " },
     ],
   },
-  { 
-    key: "attendance", 
-    label: "Class Attendance", 
-    icon: <MdPeople />,
-    requiresFormTeacher: true 
-  },
+  // { 
+  //   key: "attendance", 
+  //   label: "Class Attendance", 
+  //   icon: <MdPeople />,
+  //   requiresFormTeacher: true 
+  // },
 ];
 
 const Button = ({ variant = "default", onClick, className = "", children }) => {
@@ -225,9 +228,10 @@ export default function SubjectTeacherDashboard() {
       case "GradesAuditPage": return <GradesAuditPage />; // ⭐️ Integrated your new page
       case "ReportCard": return <ReportCard />; // ⭐️ Integrated your new page
        case "GradeEntry": return <GradeEntry />; // ⭐️ Integrated your new page
-      case "SubjectGradeDeleteEntry": return <SubjectGradeDeleteEntry />; // ⭐️ Integrated your new page
+      case "ClassList": return <ClassList />; // ⭐️ Integrated your new page
       case "PupilAttendanceScanner": return <PupilAttendanceScanner />; // ⭐️ Integrated your new page
       case "PupilsAttendance": return <PupilsAttendance />; // ⭐️ Integrated your new page
+      case "ManualAttendance": return <ManualAttendance />; // ⭐️ Integrated your new page
       default:
         return (
           <div className="p-6 bg-white rounded-xl shadow-md">

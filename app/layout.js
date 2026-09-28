@@ -1,4 +1,6 @@
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // app/layout.js
 
 export const metadata = {
@@ -128,6 +130,15 @@ export default function RootLayout({ children }) {
 
       <body suppressHydrationWarning>
         {children}
+
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+        />
       </body>
     </html>
   );

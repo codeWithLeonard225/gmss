@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Contact Us | Yahweh Academy International",
+  title: "Contact Us | Government Model Senior Secondary School",
   description:
-    "Contact Yahweh Academy International for admissions, school information, student support, and general inquiries in Sierra Leone.",
+    "Contact Government Model Senior Secondary School for admissions, school information, student support, and general inquiries in Freetown, Sierra Leone.",
 };
 
 export default function ContactPage() {
@@ -13,31 +13,31 @@ export default function ContactPage() {
       {/* =====================================================
           HERO
       ====================================================== */}
-      <section className="relative bg-[#071A4D] py-20 md:py-24 px-6 overflow-hidden">
+      <section className="relative bg-[#4a0000] py-20 md:py-24 px-6 overflow-hidden">
 
         {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#F4C542]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#D4AF37]/10 rounded-full blur-3xl"></div>
 
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center text-white">
 
-          <p className="text-[#F4C542] uppercase tracking-[0.25em] font-bold text-sm mb-5">
+          <p className="text-[#D4AF37] uppercase tracking-[0.25em] font-bold text-sm mb-5">
             Get In Touch
           </p>
 
           <h1 className="text-4xl md:text-6xl font-extrabold mb-5">
             Contact{" "}
-            <span className="text-[#F4C542]">
-              Yahweh Academy
+            <span className="text-[#D4AF37]">
+              Government Model
             </span>
           </h1>
 
-          <div className="w-20 h-1 bg-[#F4C542] mx-auto mb-7"></div>
+          <div className="w-20 h-1 bg-[#D4AF37] mx-auto mb-7"></div>
 
-          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-amber-100/90 max-w-3xl mx-auto leading-relaxed">
             We are here to answer your questions about admissions, academic
-            programs, student support, and life at Yahweh Academy International.
+            programs, student support, and life at Government Model Senior Secondary School.
           </p>
 
         </div>
@@ -53,13 +53,13 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
 
             {/* EMAIL */}
-            <div className="group bg-slate-50 rounded-2xl p-8 text-center shadow-md border-t-4 border-[#F4C542] hover:shadow-xl hover:-translate-y-1 transition duration-300">
+            <div className="group bg-amber-50/30 rounded-2xl p-8 text-center shadow-md border-t-4 border-[#D4AF37] hover:shadow-xl hover:-translate-y-1 transition duration-300">
 
-              <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-[#071A4D] text-[#F4C542] flex items-center justify-center text-3xl">
+              <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-[#4a0000] text-[#D4AF37] flex items-center justify-center text-3xl">
                 ✉
               </div>
 
-              <h3 className="text-2xl font-bold text-[#071A4D] mb-3">
+              <h3 className="text-2xl font-bold text-[#4a0000] mb-3">
                 Email Us
               </h3>
 
@@ -68,16 +68,16 @@ export default function ContactPage() {
               </p>
 
               {/* Replace with actual school email */}
-              <span className="text-[#B88A00] font-bold">
+              <span className="text-[#4a0000] font-bold">
                 School email coming soon
               </span>
 
             </div>
 
             {/* PHONE */}
-            <div className="group bg-[#071A4D] rounded-2xl p-8 text-center shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
+            <div className="group bg-[#4a0000] rounded-2xl p-8 text-center shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
 
-              <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-[#F4C542] text-[#071A4D] flex items-center justify-center text-3xl">
+              <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-[#D4AF37] text-[#4a0000] flex items-center justify-center text-3xl">
                 ☎
               </div>
 
@@ -85,25 +85,25 @@ export default function ContactPage() {
                 Call Us
               </h3>
 
-              <p className="text-slate-300 mb-4 leading-relaxed">
+              <p className="text-amber-100/80 mb-4 leading-relaxed">
                 Speak with our administration during official school hours:
               </p>
 
               {/* Replace with actual school phone */}
-              <span className="text-[#F4C542] font-bold">
+              <span className="text-[#D4AF37] font-bold">
                 School phone number coming soon
               </span>
 
             </div>
 
             {/* OFFICE HOURS */}
-            <div className="group bg-slate-50 rounded-2xl p-8 text-center shadow-md border-t-4 border-[#071A4D] hover:shadow-xl hover:-translate-y-1 transition duration-300">
+            <div className="group bg-amber-50/30 rounded-2xl p-8 text-center shadow-md border-t-4 border-[#4a0000] hover:shadow-xl hover:-translate-y-1 transition duration-300">
 
-              <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-[#071A4D] text-[#F4C542] flex items-center justify-center text-3xl">
+              <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-[#4a0000] text-[#D4AF37] flex items-center justify-center text-3xl">
                 ⏰
               </div>
 
-              <h3 className="text-2xl font-bold text-[#071A4D] mb-3">
+              <h3 className="text-2xl font-bold text-[#4a0000] mb-3">
                 Office Hours
               </h3>
 
@@ -132,26 +132,26 @@ export default function ContactPage() {
       {/* =====================================================
           CONTACT FORM + LOCATION
       ====================================================== */}
-      <section className="py-20 px-6 bg-slate-50">
+      <section className="py-20 px-6 bg-amber-50/30">
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
 
           {/* =================================================
               CONTACT FORM
           ================================================== */}
-          <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200">
+          <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-amber-100">
 
             <div className="mb-8">
 
-              <p className="text-[#B88A00] uppercase tracking-widest font-bold text-sm mb-3">
+              <p className="text-[#4a0000] uppercase tracking-widest font-bold text-sm mb-3">
                 Send Us a Message
               </p>
 
-              <h2 className="text-3xl md:text-4xl font-bold text-[#071A4D] mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#4a0000] mb-4">
                 How Can We Help?
               </h2>
 
-              <div className="w-14 h-1 bg-[#F4C542]"></div>
+              <div className="w-14 h-1 bg-[#D4AF37]"></div>
 
             </div>
 
@@ -172,7 +172,7 @@ export default function ContactPage() {
                   name="name"
                   placeholder="Enter your full name"
                   required
-                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 placeholder:text-gray-400 focus:border-[#071A4D] focus:ring-2 focus:ring-[#F4C542]/40 outline-none transition"
+                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 placeholder:text-gray-400 focus:border-[#4a0000] focus:ring-2 focus:ring-[#D4AF37]/40 outline-none transition"
                 />
               </div>
 
@@ -191,7 +191,7 @@ export default function ContactPage() {
                   name="email"
                   placeholder="Enter your email address"
                   required
-                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 placeholder:text-gray-400 focus:border-[#071A4D] focus:ring-2 focus:ring-[#F4C542]/40 outline-none transition"
+                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 placeholder:text-gray-400 focus:border-[#4a0000] focus:ring-2 focus:ring-[#D4AF37]/40 outline-none transition"
                 />
               </div>
 
@@ -209,7 +209,7 @@ export default function ContactPage() {
                   id="phone"
                   name="phone"
                   placeholder="Enter your phone number"
-                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 placeholder:text-gray-400 focus:border-[#071A4D] focus:ring-2 focus:ring-[#F4C542]/40 outline-none transition"
+                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 placeholder:text-gray-400 focus:border-[#4a0000] focus:ring-2 focus:ring-[#D4AF37]/40 outline-none transition"
                 />
               </div>
 
@@ -227,7 +227,7 @@ export default function ContactPage() {
                   name="subject"
                   required
                   defaultValue=""
-                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 focus:border-[#071A4D] focus:ring-2 focus:ring-[#F4C542]/40 outline-none transition"
+                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 focus:border-[#4a0000] focus:ring-2 focus:ring-[#D4AF37]/40 outline-none transition"
                 >
                   <option value="" disabled>
                     Select a subject
@@ -267,17 +267,17 @@ export default function ContactPage() {
                 <textarea
                   id="message"
                   name="message"
-                  rows="5"
+                  rows={5}
                   placeholder="Write your message here..."
                   required
-                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 placeholder:text-gray-400 focus:border-[#071A4D] focus:ring-2 focus:ring-[#F4C542]/40 outline-none transition resize-none"
+                  className="w-full px-4 py-3.5 border border-slate-300 rounded-lg bg-white text-gray-800 placeholder:text-gray-400 focus:border-[#4a0000] focus:ring-2 focus:ring-[#D4AF37]/40 outline-none transition resize-none"
                 ></textarea>
               </div>
 
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full bg-[#071A4D] hover:bg-[#0d286b] text-white font-bold py-3.5 rounded-lg transition duration-300 shadow-lg hover:shadow-xl"
+                className="w-full bg-[#4a0000] hover:bg-[#330000] text-white font-bold py-3.5 rounded-lg transition duration-300 shadow-lg hover:shadow-xl"
               >
                 Send Message →
               </button>
@@ -292,9 +292,9 @@ export default function ContactPage() {
           <div className="space-y-8">
 
             {/* Location Card */}
-            <div className="bg-[#071A4D] p-8 md:p-10 text-white rounded-3xl shadow-xl">
+            <div className="bg-[#4a0000] p-8 md:p-10 text-white rounded-3xl shadow-xl">
 
-              <p className="text-[#F4C542] uppercase tracking-widest font-bold text-sm mb-3">
+              <p className="text-[#D4AF37] uppercase tracking-widest font-bold text-sm mb-3">
                 Visit Our School
               </p>
 
@@ -302,12 +302,12 @@ export default function ContactPage() {
                 Our Location
               </h2>
 
-              <div className="w-14 h-1 bg-[#F4C542] mb-6"></div>
+              <div className="w-14 h-1 bg-[#D4AF37] mb-6"></div>
 
               <div className="space-y-5">
 
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 flex-shrink-0 rounded-lg bg-white/10 text-[#F4C542] flex items-center justify-center text-xl">
+                  <div className="w-11 h-11 flex-shrink-0 rounded-lg bg-white/10 text-[#D4AF37] flex items-center justify-center text-xl border border-white/10">
                     📍
                   </div>
 
@@ -316,8 +316,10 @@ export default function ContactPage() {
                       School Address
                     </p>
 
-                    <p className="text-slate-300 leading-relaxed">
-                      Yahweh Academy International
+                    <p className="text-amber-100/90 leading-relaxed">
+                      Government Model Senior Secondary School
+                      <br />
+                      Berry Street, Circular Road
                       <br />
                       Freetown, Sierra Leone
                     </p>
@@ -325,7 +327,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 flex-shrink-0 rounded-lg bg-white/10 text-[#F4C542] flex items-center justify-center text-xl">
+                  <div className="w-11 h-11 flex-shrink-0 rounded-lg bg-white/10 text-[#D4AF37] flex items-center justify-center text-xl border border-white/10">
                     🏫
                   </div>
 
@@ -334,7 +336,7 @@ export default function ContactPage() {
                       School Office
                     </p>
 
-                    <p className="text-slate-300">
+                    <p className="text-amber-100/90">
                       Monday - Friday
                       <br />
                       8:00 AM - 4:00 PM
@@ -346,10 +348,10 @@ export default function ContactPage() {
 
               {/* Google Maps */}
               <Link
-                href="https://www.google.com/maps/search/Freetown+Sierra+Leone"
+                href="https://www.google.com/maps/search/Government+Model+Senior+Secondary+School+Berry+Street+Freetown+Sierra+Leone"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center justify-center border-2 border-[#F4C542] text-[#F4C542] hover:bg-[#F4C542] hover:text-[#071A4D] font-bold px-6 py-3 rounded-lg transition duration-300"
+                className="mt-8 inline-flex items-center justify-center border-2 border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#4a0000] font-bold px-6 py-3 rounded-lg transition duration-300"
               >
                 View on Google Maps →
               </Link>
@@ -357,7 +359,7 @@ export default function ContactPage() {
             </div>
 
             {/* Map */}
-            <div className="relative h-96 w-full rounded-3xl shadow-xl overflow-hidden border border-slate-200 bg-slate-200">
+            <div className="relative h-96 w-full rounded-3xl shadow-xl overflow-hidden border border-amber-100 bg-slate-200">
 
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15783.564531980841!2d-13.2388!3d8.4844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf04c38d3886f38d%3A0x67c0500e263c9b74!2sFreetown%2C%20Sierra%20Leone!5e0!3m2!1sen!2ssl!4v1700000000000"
@@ -367,7 +369,7 @@ export default function ContactPage() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Yahweh Academy International Location in Freetown"
+                title="Government Model Senior Secondary School Location in Freetown"
               ></iframe>
 
             </div>
@@ -381,19 +383,19 @@ export default function ContactPage() {
       {/* =====================================================
           FINAL CTA
       ====================================================== */}
-      <section className="py-16 bg-[#F4C542] text-[#071A4D] text-center">
+      <section className="py-16 bg-[#D4AF37] text-[#4a0000] text-center shadow-inner">
 
         <div className="max-w-4xl mx-auto px-6">
 
           <p className="uppercase tracking-[0.3em] font-bold text-sm mb-4">
-            Yahweh Academy International
+            Government Model Senior Secondary School
           </p>
 
           <h2 className="text-3xl md:text-4xl font-extrabold mb-5">
             We&apos;re Ready to Hear From You
           </h2>
 
-          <p className="text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg max-w-2xl mx-auto leading-relaxed text-[#330000]">
             Whether you are a parent, student, guardian, or visitor,
             our school community welcomes your questions and inquiries.
           </p>

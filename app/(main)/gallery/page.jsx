@@ -7,7 +7,7 @@ const galleryItems = [
   {
     type: "image",
     src: "/images/sports1.jpg",
-    alt: "Inter-House Sports at Yahweh Academy International",
+    alt: "Inter-House Sports at Government Model Senior Secondary School",
     category: "Sports",
     title: "Inter-House Sports Meet",
     description:
@@ -26,7 +26,7 @@ const galleryItems = [
   {
     type: "image",
     src: "/images/debate1.jpg",
-    alt: "Debate competition at Yahweh Academy International",
+    alt: "Debate competition at Government Model Senior Secondary School",
     category: "Debates",
     title: "Inter-School Debate Championship",
     description:
@@ -41,15 +41,15 @@ const galleryItems = [
     description:
       "Highlights from student presentations, public speaking activities, and debate competitions.",
   },
-  {
-    type: "image",
-    src: "/images/classroom.jpg",
-    alt: "Students learning in the classroom",
-    category: "Academics",
-    title: "Learning in the Classroom",
-    description:
-      "A focused learning environment where students develop knowledge, skills, creativity, and confidence.",
-  },
+  // {
+  //   type: "image",
+  //   src: "/images/classroom.jpg",
+  //   alt: "Students learning in the classroom",
+  //   category: "Academics",
+  //   title: "Learning in the Classroom",
+  //   description:
+  //     "A focused learning environment where students develop knowledge, skills, creativity, and confidence.",
+  // },
   {
     type: "image",
     src: "/images/service-facilities.jpg",
@@ -82,37 +82,37 @@ export default function GalleryClient() {
         );
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-amber-50/30">
 
       {/* =====================================================
           HERO
       ====================================================== */}
-      <section className="relative bg-[#071A4D] py-20 md:py-24 px-6 overflow-hidden">
+      <section className="relative bg-[#4a0000] py-20 md:py-24 px-6 overflow-hidden">
 
         {/* Decorative Background */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#F4C542]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#D4AF37]/10 rounded-full blur-3xl"></div>
 
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center text-white">
 
-          <p className="text-[#F4C542] uppercase tracking-[0.25em] font-bold text-sm mb-5">
+          <p className="text-[#D4AF37] uppercase tracking-[0.25em] font-bold text-sm mb-5">
             School Life
           </p>
 
           <h1 className="text-4xl md:text-6xl font-extrabold mb-5">
-            Yahweh Academy{" "}
-            <span className="text-[#F4C542]">
+            Government Model{" "}
+            <span className="text-[#D4AF37]">
               Gallery
             </span>
           </h1>
 
-          <div className="w-20 h-1 bg-[#F4C542] mx-auto mb-7"></div>
+          <div className="w-20 h-1 bg-[#D4AF37] mx-auto mb-7"></div>
 
-          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-amber-100/90 max-w-3xl mx-auto leading-relaxed">
             Explore moments from academic activities, sports, debates,
             educational trips, student life, and other memorable experiences
-            at Yahweh Academy International.
+            at Government Model Senior Secondary School.
           </p>
 
         </div>
@@ -124,15 +124,15 @@ export default function GalleryClient() {
       <section className="bg-white py-14 px-6">
         <div className="max-w-4xl mx-auto text-center">
 
-          <p className="text-[#B88A00] uppercase tracking-widest font-bold text-sm mb-3">
+          <p className="text-[#4a0000] uppercase tracking-widest font-bold text-sm mb-3">
             Our Memories
           </p>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-[#071A4D] mb-5">
-            Life at Yahweh Academy International
+          <h2 className="text-3xl md:text-4xl font-bold text-[#4a0000] mb-5">
+            Life at Government Model Senior Secondary School
           </h2>
 
-          <div className="w-16 h-1 bg-[#F4C542] mx-auto mb-6"></div>
+          <div className="w-16 h-1 bg-[#D4AF37] mx-auto mb-6"></div>
 
           <p className="text-gray-600 text-lg leading-relaxed">
             Our gallery captures the experiences that make school life
@@ -157,8 +157,8 @@ export default function GalleryClient() {
               onClick={() => setActiveCategory(cat)}
               className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
                 activeCategory === cat
-                  ? "bg-[#071A4D] text-[#F4C542] shadow-lg"
-                  : "bg-slate-50 text-[#071A4D] border border-slate-200 hover:bg-[#071A4D] hover:text-white hover:border-[#071A4D]"
+                  ? "bg-[#4a0000] text-[#D4AF37] shadow-lg"
+                  : "bg-amber-50/50 text-[#4a0000] border border-amber-200/60 hover:bg-[#4a0000] hover:text-white hover:border-[#4a0000]"
               }`}
             >
               {cat}
@@ -180,7 +180,7 @@ export default function GalleryClient() {
 
             <div
               key={`${item.title}-${index}`}
-              className="group bg-white rounded-2xl shadow-md overflow-hidden border border-slate-200 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+              className="group bg-white rounded-2xl shadow-md overflow-hidden border border-amber-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               onClick={() => setModalItem(item)}
             >
 
@@ -209,7 +209,7 @@ export default function GalleryClient() {
                     {/* Video Indicator */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
 
-                      <div className="w-14 h-14 rounded-full bg-[#071A4D]/90 text-[#F4C542] flex items-center justify-center text-xl shadow-lg">
+                      <div className="w-14 h-14 rounded-full bg-[#4a0000]/90 text-[#D4AF37] flex items-center justify-center text-xl shadow-lg border border-white/20">
                         ▶
                       </div>
 
@@ -219,7 +219,7 @@ export default function GalleryClient() {
                 )}
 
                 {/* Category */}
-                <span className="absolute top-4 right-4 bg-[#071A4D]/90 text-[#F4C542] text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                <span className="absolute top-4 right-4 bg-[#4a0000]/90 text-[#D4AF37] text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm border border-white/10">
                   {item.category}
                 </span>
 
@@ -228,7 +228,7 @@ export default function GalleryClient() {
               {/* CONTENT */}
               <div className="p-6">
 
-                <h3 className="text-xl font-bold text-[#071A4D] mb-3">
+                <h3 className="text-xl font-bold text-[#4a0000] mb-3">
                   {item.title}
                 </h3>
 
@@ -236,9 +236,9 @@ export default function GalleryClient() {
                   {item.description}
                 </p>
 
-                <div className="flex items-center text-[#B88A00] font-bold text-sm">
+                <div className="flex items-center text-[#4a0000] font-bold text-sm">
                   View {item.type === "video" ? "Video" : "Photo"}
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">
+                  <span className="ml-2 text-[#D4AF37] group-hover:translate-x-1 transition-transform">
                     →
                   </span>
                 </div>
@@ -259,7 +259,7 @@ export default function GalleryClient() {
               📷
             </div>
 
-            <h3 className="text-2xl font-bold text-[#071A4D] mb-3">
+            <h3 className="text-2xl font-bold text-[#4a0000] mb-3">
               No Gallery Items Yet
             </h3>
 
@@ -275,17 +275,21 @@ export default function GalleryClient() {
       {/* =====================================================
           MOTTO SECTION
       ====================================================== */}
-      <section className="bg-[#F4C542] text-[#071A4D] py-14 px-6 text-center">
+      <section className="bg-[#D4AF37] text-[#4a0000] py-14 px-6 text-center shadow-inner">
 
         <div className="max-w-4xl mx-auto">
 
-          <p className="uppercase tracking-[0.3em] font-bold text-sm mb-4">
+          <p className="uppercase tracking-[0.3em] font-bold text-sm mb-3">
             Our Motto
           </p>
 
-          <h2 className="text-3xl md:text-4xl font-extrabold">
-            Integrity + Excellence = Leadership
+          <h2 className="text-3xl md:text-5xl font-extrabold italic">
+            Disce Prodesse
           </h2>
+
+          <p className="text-lg font-bold uppercase tracking-widest mt-2 text-[#330000]">
+            (Learn to Be Useful)
+          </p>
 
         </div>
 
@@ -297,7 +301,7 @@ export default function GalleryClient() {
       {modalItem && (
 
         <div
-          className="fixed inset-0 bg-[#071A4D]/90 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-[#4a0000]/90 backdrop-blur-sm flex items-center justify-center z-50 p-4"
           onClick={() => setModalItem(null)}
         >
 
@@ -328,7 +332,7 @@ export default function GalleryClient() {
 
               <button
                 onClick={() => setModalItem(null)}
-                className="absolute top-4 right-4 w-11 h-11 rounded-full bg-[#071A4D]/90 text-white hover:bg-[#F4C542] hover:text-[#071A4D] flex items-center justify-center text-xl font-bold transition duration-300"
+                className="absolute top-4 right-4 w-11 h-11 rounded-full bg-[#4a0000]/90 text-white hover:bg-[#D4AF37] hover:text-[#4a0000] flex items-center justify-center text-xl font-bold transition duration-300 shadow-lg border border-white/20"
                 aria-label="Close gallery item"
               >
                 ✕
@@ -339,15 +343,15 @@ export default function GalleryClient() {
             {/* MODAL CONTENT */}
             <div className="p-7 md:p-8 text-center">
 
-              <span className="inline-block bg-[#F4C542] text-[#071A4D] text-xs font-bold px-4 py-1.5 rounded-full mb-4">
+              <span className="inline-block bg-[#D4AF37] text-[#4a0000] text-xs font-bold px-4 py-1.5 rounded-full mb-4">
                 {modalItem.category}
               </span>
 
-              <h3 className="text-2xl md:text-3xl font-bold text-[#071A4D] mb-3">
+              <h3 className="text-2xl md:text-3xl font-bold text-[#4a0000] mb-3">
                 {modalItem.title}
               </h3>
 
-              <div className="w-12 h-1 bg-[#F4C542] mx-auto mb-5"></div>
+              <div className="w-12 h-1 bg-[#D4AF37] mx-auto mb-5"></div>
 
               <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 {modalItem.description}
@@ -355,7 +359,7 @@ export default function GalleryClient() {
 
               <button
                 onClick={() => setModalItem(null)}
-                className="mt-7 px-8 py-3 bg-[#071A4D] text-[#F4C542] font-bold rounded-lg hover:bg-[#0d286b] transition duration-300 shadow-md"
+                className="mt-7 px-8 py-3 bg-[#4a0000] text-[#D4AF37] font-bold rounded-lg hover:bg-[#330000] transition duration-300 shadow-md"
               >
                 Close
               </button>

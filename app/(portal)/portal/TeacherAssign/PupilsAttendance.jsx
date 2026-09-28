@@ -580,6 +580,7 @@ const PupilAttendanceLogs = () => {
                 <th className="p-3">Clock Out</th>
                 <th className="p-3">Notice</th>
                 <th className="p-3">Status</th>
+                <th className="p-3">Recorded By</th>
                 <th className="p-3 text-right">Actions</th>
               </tr>
             </thead>
@@ -624,6 +625,24 @@ const PupilAttendanceLogs = () => {
                         </span>
                       )}
                     </td>
+
+                    <td className="p-3">
+  {log.loggedByName ? (
+    <div>
+      <div className="font-semibold text-gray-800">
+        👤 {log.loggedByName}
+      </div>
+
+      <div className="text-xs text-gray-500">
+        {log.loggedByRole || "Unknown Role"}
+      </div>
+    </div>
+  ) : (
+    <span className="text-xs text-gray-400 italic">
+      Not recorded
+    </span>
+  )}
+</td>
                     <td className="p-3 text-right space-x-2">
                       {isEditing ? (
                         <div className="flex justify-end gap-2">
@@ -654,7 +673,7 @@ const PupilAttendanceLogs = () => {
                           )}
                           {!log.isAutomaticallyAbsent && (
                             <>
-                              <button
+                              {/* <button
                                 onClick={() => {
                                   setEditingLogId(log.id);
                                   setEditStatus(log.status || "Present");
@@ -663,14 +682,14 @@ const PupilAttendanceLogs = () => {
                                 className="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded text-xs"
                               >
                                 Edit
-                              </button>
-                              <button
+                              </button> */}
+                              {/* <button
                                 disabled={actionLoading}
                                 onClick={() => handleDeleteLog(log.id, log.studentName)}
                                 className="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1 rounded text-xs disabled:opacity-50"
                               >
                                 Delete
-                              </button>
+                              </button> */}
                             </>
                           )}
                         </div>
