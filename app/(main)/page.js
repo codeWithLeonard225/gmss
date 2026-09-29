@@ -125,7 +125,7 @@ export default function HomePage() {
             <div className="absolute -top-5 -left-5 w-24 h-24 bg-[#FFF9C4] rounded-lg -z-0 border-2 border-[#D4AF37]"></div>
 
             <Image
-              src="/images/principal.jpg"
+              src="/images/modelPrincipal.jpg"
               alt="Principal of Government Model Senior Secondary School"
               width={500}
               height={550}

@@ -101,7 +101,7 @@ export default function AboutPage() {
             <div className="absolute -top-5 -right-5 w-24 h-24 bg-[#F4C542] rounded-xl"></div>
 
             <Image
-              src="/images/modelPrincipal.jpg"
+              src="/images/pupil.jpg"
               alt="Government Model Senior Secondary School Classroom"
               width={600}
               height={450}
