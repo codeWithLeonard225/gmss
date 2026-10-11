@@ -37,6 +37,7 @@ import PupilAttendanceScanner from "../../TeacherAssign/PupilAttendanceScanner";
 import PupilsAttendance from "../../TeacherAssign/PupilsAttendance";
 import ManualAttendance from "../../TeacherAssign/ManualAttendance";
 import ClassList from "../../TeacherAssign/ClassList";
+import PupilUpdate from "../../TeacherAssign/PupilUpdate";
 
 const NAV_ITEMS = [
   { key: "dashboard", label: "Dashboard", icon: <MdDashboard /> },
@@ -59,6 +60,7 @@ const NAV_ITEMS = [
     icon: <MdBarChart />,
     requiresFormTeacher: true,
     children: [
+      { key: "PupilUpdate", label: "Pupil Update" },
       { key: "ClassList", label: "Class List" },
       { key: "GradeSheet", label: "Grade Sheet" },
         // { key: "GradeEntry", label: "Grade Manuel" },
@@ -228,6 +230,7 @@ export default function SubjectTeacherDashboard() {
       case "GradesAuditPage": return <GradesAuditPage />; // ⭐️ Integrated your new page
       case "ReportCard": return <ReportCard />; // ⭐️ Integrated your new page
        case "GradeEntry": return <GradeEntry />; // ⭐️ Integrated your new page
+      case "PupilUpdate": return <PupilUpdate />; // ⭐️ Integrated your new page
       case "ClassList": return <ClassList />; // ⭐️ Integrated your new page
       case "PupilAttendanceScanner": return <PupilAttendanceScanner />; // ⭐️ Integrated your new page
       case "PupilsAttendance": return <PupilsAttendance />; // ⭐️ Integrated your new page
